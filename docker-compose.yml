@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - kylin-network
+
+  kylin:
+    image: apachekylin/apache-kylin-standalone:5.0.2-GA
+    container_name: kylin5
+    hostname: localhost
+    environment:
+      - TZ=Europe/Moscow
+    ports:
+      - "7070:7070"
+      - "8088:8088"
+      - "9870:9870"
+      - "8032:8032"
+      - "8042:8042"
+      - "2181:2181"
+    deploy:
+      resources:
+        limits:
+          memory: 10G
+    depends_on:
+      minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-u", "ADMIN:KYLIN", "http://localhost:7070/kylin/api/projects"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+    networks:
+      - kylin-network
+
+networks:
+  kylin-network:
+    driver: bridge
