@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<!--
+
+Copyright 2014 - 2017 Roland Bouman (roland.bouman@gmail.com)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Begrippenlijst</title>
+    <link rel="stylesheet" type="text/css" href="../../css/doc.css"/>
+  </head>
+  <body>
+    <div>
+      <span class="go-back" onclick="history.back()">Ga terug</span>
+    </div>
+    <h1>Begrippenlijst</h1>
+    <dl>
+      <dt><dfn class="catalog"><a name="catalog">Catalogus</a></dfn></dt>
+      <dd>
+        Een catalogus is een verzameling <a href="#cube">kubussen</a>. De kubussen in een catalogus horen meestal bij elkaar op grond van hun inhoud of doelgroep.
+      </dd>
+
+      <dt><dfn class="pivot-table"><a name="pivot-table">Draaitabel</a></dfn></dt>
+      <dd>
+        Een draaitabel (ook wel kruistabel genoemd) is een soort tabel waar zowel de rij- als de kolomkoppen groepen van gegevens voorstellen.
+        Op de kruispunten van kolom- en rijkoppen bevinden zich cellen, met daarin een geaggregeerde waarde die berekent wordt uit de onderliggende <a href="#measure">meetwaarden</a>.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Draaitabel">draaitabellen in wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="property"><a name="property">Eigenschapveld</a> (property)</dfn></dt>
+      <dd>
+        Eigenschapsvelden (properties) zijn extra informatievelden die voor een <a href="#level">hiërarchieniveau</a> gedefiniëerd zijn.
+        De eigenlijke waarden van deze velden zijn beschikbaar voor ieder <a href="#member">lid-element</a> dat tot dat hiërarchieniveau behoort.
+        Zo kan een product niveau in a product hierarchie nuttige extra informatie bij zich dragen zoals de product prijs.
+        Eigenschapsvelden kunnen ook gebruikt worden om alternatieve of extra tekstuele beschrijvingen aan lid-elementen te koppelen, zoals een afgekorte naam, of juist een langere beschrijving.
+      </dd>
+
+      <dt><dfn class="hierarchy"><a name="hierarchy">Hiërarchie</a></dfn></dt>
+      <dd>
+        Een hiërarchie is een op aggregatie-niveau geordende verzameling van categorische waarden.
+        Bijvoorbeeld: tijd is hiërarchisch geordend volgens jaar, dan kwartaal, dan maand, en zo verder.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Cube_(informatica)#Hi.C3.ABrarchie">hiërarchieën in wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="level"><a name="level">Hiërarchieniveau</a></dfn></dt>
+      <dd>
+        Een aggregatie niveau binnen een <a href="#hierarchy">hiërarchie</a>.
+      </dd>
+
+      <dt><dfn class="cube"><a name="cube">Kubus</a></dfn></dt>
+      <dd>
+        Een gegevensstructuur die is toegesneden op het gemakkelijke en snelle data-analyse.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Cube_(informatica)">kubussen in wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="member"><a name="member">Lid-element</a> (member)</dfn></dt>
+      <dd>
+        Een lid is één bepaalde categorische waarde binnen een <a href="#level">niveau</a> van een <a href="#hierarchy">hiërarchie</a>.
+        Bijvoorbeeld: "2015" is een lid van het jaar niveau binnen een tijd hiërarchie.
+      </dd>
+
+      <dt><dfn class="measure"><a name="measure">Meetwaarde</a></dfn></dt>
+      <dd>
+        Meetwaardes (ook wel feiten genoemd) zijn quantitatieve gegevens die vastgelegd worden over een bedrijfsproces.
+        Bijvoorbeeld: het bedrijfsproces "verkoop" kent meetwaarden als verkocht aantal en verkoopprijs.
+        Lees meer over <a href="http://en.wikipedia.org/wiki/Data_warehouse#Facts">meetwaardes in de Engelstalige wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="olap"><a name="olap"><abbr>OLAP</abbr></a></dfn></dt>
+      <dd>
+        <abbr>OLAP</abbr> is een afkorting van <dfn class="olap">Online Analytical Processing</dfn>.
+        Hieronder wordt verstaan het op ad-hoc basis analyseren en rapporteren van gegevens over het verloop van bedrijfsprocessen.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Online_analytical_processing"><abbr>OLAP</abbr> in de wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="bar-chart"><a name="bar-chart">Staafdiagram</a></dfn></dt>
+      <dd>
+        Een staafdiagram toont categorieen als staven, waarbij de staaflengte wordt gebruikt om de meetwaarde te visualizeren.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Staafdiagram">staafdiagrammen in wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="pie-chart"><a name="pie-chart">Taartdiagram</a></dfn></dt>
+      <dd>
+        Een taartdiagram (ook wel cirkeldiagram genoemd) is een grafiek die de categorie van één serie meetwaarden uitbeeld als een sector ("taartpunt") van een cirkel.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Cirkeldiagram">taartdiagrammen in wikipedia</a>.
+      </dd>
+
+      <dt><dfn class="table"><a name="table">Tabel</a></dfn></dt>
+      <dd>
+        Een gegevenspresentatie bestaande uit een verzameling rijen met een vaste indeling in kolommen.
+        Lees meer over <a href="http://nl.wikipedia.org/wiki/Tabel">tabellen in wikipedia</a>.
+      </dd>
+    </dl>
+  </body>
+</html>

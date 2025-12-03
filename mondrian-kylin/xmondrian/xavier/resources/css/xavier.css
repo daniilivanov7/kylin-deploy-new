@@ -1,0 +1,111 @@
+/*
+
+Copyright 2014 - 2017 Roland Bouman (roland.bouman@gmail.com)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+*/
+html, body {
+  font-family: Arial;
+  font-size: 14px;
+  color: #26363d;
+  padding: 0px;
+  margin: 0px;
+  cursor: default;
+  overflow: hidden;
+}
+
+.mainsplitpane {
+  /*top: 32px;*/
+  overflow: hidden;
+}
+
+/**
+ *  Dragging
+ */
+
+.dragging {
+  z-index: 100000;
+  display: block;
+  position: absolute;
+  white-space: nowrap;
+  border-style: solid;
+  border-width: 1px;
+  text-indent: 20px;
+  margin-left: 10px;
+  padding: 2px;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 2px 2px;
+  cursor: grabbing;
+}
+
+
+/**
+ *  Toolbar
+ */
+.toolbar .show-catalog-nodes {
+  background-image: url('../images/schema.png');
+} 
+
+.toolbar .show-dimension-nodes {
+  background-image: url('../images/dimension.png');
+} 
+
+.toolbar .show-hierarchy-nodes {
+  background-image: url('../images/hierarchy1.png');
+} 
+ 
+.toolbar .refresh {
+  background-image: url('../../lib/mui/images/refresh16x16.png');
+}
+
+.toolbar .new {
+  background-image: url('../../lib/mui/images/new16x16.png');
+}
+
+.toolbar .open {
+  background-image: url('../../lib/mui/images/openfolder16x16.png');
+}
+
+.toolbar .save {
+  background-image: url('../../lib/mui/images/save16x16.png');
+}
+
+.toolbar .save-as {
+  background-image: url('../../lib/mui/images/saveas16x16.png');
+}
+
+.toolbar .edit {
+  background-image: url('../../lib/mui/images/edit16x16.png');
+}
+
+.toolbar .show-empty {
+  background-image: url('../../lib/mui/images/empty16x16.png');
+}
+
+.toolbar .run {
+  background-image: url('../images/run.png');
+}
+
+.toolbar .auto-run {
+  background-image: url('../images/auto-run.png');
+}
+
+.toolbar .excel {
+  background-image: url('../images/excel.png');
+}
+
+.toolbar .clear {
+  background-image: url('../../lib/mui/images/trash_16x16.png');
+}

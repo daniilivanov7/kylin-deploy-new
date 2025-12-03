@@ -1,0 +1,558 @@
+/*
+
+Copyright 2014 - 2017 Roland Bouman (roland.bouman@gmail.com)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+*/
+@-webkit-keyframes treepane-fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.10;
+  }
+  20% {
+    opacity: 0.20;
+  }
+  30% {
+    opacity: 0.30;
+  }
+  40% {
+    opacity: 0.40;
+  }
+  50% {
+    opacity: 0.50;
+  }
+  60% {
+    opacity: 0.60;
+  }
+  70% {
+    opacity: 0.70;
+  }
+  80% {
+    opacity: 0.80;
+  }
+  90% {
+    opacity: 0.90;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes treepane-fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.10;
+  }
+  20% {
+    opacity: 0.20;
+  }
+  30% {
+    opacity: 0.30;
+  }
+  40% {
+    opacity: 0.40;
+  }
+  50% {
+    opacity: 0.50;
+  }
+  60% {
+    opacity: 0.60;
+  }
+  70% {
+    opacity: 0.70;
+  }
+  80% {
+    opacity: 0.80;
+  }
+  90% {
+    opacity: 0.90;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-o-keyframes treepane-fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.10;
+  }
+  20% {
+    opacity: 0.20;
+  }
+  30% {
+    opacity: 0.30;
+  }
+  40% {
+    opacity: 0.40;
+  }
+  50% {
+    opacity: 0.50;
+  }
+  60% {
+    opacity: 0.60;
+  }
+  70% {
+    opacity: 0.70;
+  }
+  80% {
+    opacity: 0.80;
+  }
+  90% {
+    opacity: 0.90;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes treepane-fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.10;
+  }
+  20% {
+    opacity: 0.20;
+  }
+  30% {
+    opacity: 0.30;
+  }
+  40% {
+    opacity: 0.40;
+  }
+  50% {
+    opacity: 0.50;
+  }
+  60% {
+    opacity: 0.60;
+  }
+  70% {
+    opacity: 0.70;
+  }
+  80% {
+    opacity: 0.80;
+  }
+  90% {
+    opacity: 0.90;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.node > .head > .toggle {
+}
+
+.node > .head > .toggle:before {
+  font-family: monospace;
+  font-size: 11pt;
+  padding-left: 5px;
+}
+
+.treepane-hidden {
+  display: none;
+}
+
+.treepane-fade-in {
+  -webkit-animation-name: treepane-fadein;
+  -webkit-animation-duration: 1s;
+  -moz-animation-name: treepane-fadein;
+  -moz-animation-duration: 1s;
+  -o-animation-name: treepane-fadein;
+  -o-animation-duration: 1s;
+  animation-name: treepane-fadein;
+  animation-duration: 1s;
+}
+
+.info-icon {
+  background-image: url('../images/info.png');
+  background-repeat: no-repeat;
+  width: 20px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+.info-icon:after {
+  content: "\00A0\00A0\00A0\00A0"
+}
+
+.xmlatreeview {
+  overflow: hidden;
+}
+
+.xmlatreeview .cube .leaf .label {
+  cursor: grab;
+}
+
+.node > .head {
+  height: 20px;
+}
+
+.cube-contents {
+  padding-top: 2px;
+}
+
+/* Current catalog and cube indicators */
+div.current-catalog-and-cube {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #cbdde8;
+  padding: 2px;
+}
+
+span.current-catalog,
+span.current-cube {
+  background-repeat: no-repeat;
+  white-space: nowrap;
+  padding-left: 20px;
+  margin: 2px;
+}
+
+div.current-catalog-and-cube.hidden,
+div.show-hierarchy-nodes.hidden,
+div.show-dimension-nodes.hidden,
+span.current-catalog.hidden, 
+span.current-cube.hidden {
+  display: none;
+}
+
+div.current-catalog-and-cube > span {
+  display: block;   /* make it blocks, in practice catalog name and cube names can be so long the are out of view. */
+  margin-left: 0px;
+}
+/* End Current catalog and cube indicators */
+
+span.current-cube {
+  margin-left: 8px;
+}
+
+.dragging > span.info-icon {
+  display: none
+}
+
+.tree .datasource > .head > .toggle {
+  background-image: url('../images/datasource.png');
+}
+
+span.current-catalog,
+.tree .catalog > .head > .toggle {
+  background-image: url('../images/schema.png');
+}
+
+span.current-cube,
+.tree .cube > .head > .toggle {
+  background-image: url('../images/cube.png');
+}
+
+.tree .dimensions > .head > .toggle {
+  background-image: url('../images/dimension.png');
+}
+
+.tree .dimension > .head > .toggle {
+  background-image: url('../images/dimension.png');
+}
+
+.hierarchy-dragging,
+.tree .hierarchy > .head > .toggle {
+  background-image: url('../images/hierarchy1.png');
+}
+
+
+/**
+ * dimension type 2 (MD_DIMTYPE_MEASURE)
+**/
+.dimensiontype2-dragging,
+.tree .dimensiontype2 > .head > .toggle {
+  background-image: url('../images/measures.png');
+}
+
+.measure-dragging,
+.tree .dimensiontype2 > .body > .node > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+
+/* MDMEASURE_AGGR_UNKNOWN */
+.tree .dimensiontype2 > .body > .aggregator0 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_SUM */
+.aggregator1-dragging,
+.tree .dimensiontype2 > .body > .aggregator1 > .head > .toggle {
+  background-image: url('../images/sum.png');
+}
+/* MDMEASURE_AGGR_COUNT */
+.tree .dimensiontype2 > .body > .aggregator2 > .head > .toggle {
+  background-image: url('../images/count.png');
+}
+/* MDMEASURE_AGGR_MIN */
+.tree .dimensiontype2 > .body > .aggregator3 > .head > .toggle {
+  background-image: url('../images/minimum.png');
+}
+/* MDMEASURE_AGGR_MAX */
+.tree .dimensiontype2 > .body > .aggregator4 > .head > .toggle {
+  background-image: url('../images/maximum.png');
+}
+/* MDMEASURE_AGGR_AVG */
+.tree .dimensiontype2 > .body > .aggregator5 > .head > .toggle {
+  background-image: url('../images/average.png');
+}
+/* MDMEASURE_AGGR_VAR */
+.tree .dimensiontype2 > .body > .aggregator6 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_STD */
+.tree .dimensiontype2 > .body > .aggregator7 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_DST (distinct count) */
+.tree .dimensiontype2 > .body > .aggregator8 > .head > .toggle {
+  background-image: url('../images/count.png');
+}
+/* MDMEASURE_AGGR_NONE */
+.tree .dimensiontype2 > .body > .aggregator9 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_AVGCHILDREN  */
+.tree .dimensiontype2 > .body > .aggregator10 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_FIRSTCHILD */
+.tree .dimensiontype2 > .body > .aggregator11 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_LASTCHILD */
+.tree .dimensiontype2 > .body > .aggregator12 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_FIRSTNONEMPTY */
+.tree .dimensiontype2 > .body > .aggregator13 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_LASTNONEMPTY */
+.tree .dimensiontype2 > .body > .aggregator14 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_BYACCOUNT */
+.tree .dimensiontype2 > .body > .aggregator15 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* MDMEASURE_AGGR_CALCULATED */
+.tree .dimensiontype2 > .body > .aggregator127 > .head > .toggle {
+  background-image: url('../images/calculation.png');
+}
+/* MDMEASURE_AGGR_UNKNOWN */
+.tree .dimensiontype2 > .body > .aggregator0 > .head > .toggle {
+  background-image: url('../images/measure.png');
+}
+/* end of measures */
+
+/**
+ * dimension type 1 (MD_DIMTYPE_TIME)
+**/
+.dimensiontype1-dragging,
+.tree > div.dimensiontype1 > div.head > span.toggle {
+  background-image: url('../images/date-dimension1.png');
+}
+
+.tree > div.dimensiontype1 > div.body > div.dimensiontype1 > div.head > span.toggle {
+  background-image: url('../images/date-hierarchy2.png');
+}
+
+
+/* end of time dimension */
+
+
+/* Derived measures */
+.derived-measure-percentage-dragging,
+.tree .derived-measure-sum > .head > .toggle {
+  background-image: url('../images/sum.png');
+}
+
+.derived-measure-percentage-dragging,
+.tree .derived-measure-percentage > .head > .toggle {
+  background-image: url('../images/derived-measure-percentage.png');
+}
+
+.derived-measure-count-dragging,
+.tree .derived-measure-count > .head > .toggle {
+  background-image: url('../images/count.png');
+}
+
+.derived-measure-minimum-dragging,
+.tree .derived-measure-minimum > .head > .toggle {
+  background-image: url('../images/minimum.png');
+}
+
+.derived-measure-maximum-dragging,
+.tree .derived-measure-maximum > .head > .toggle {
+  background-image: url('../images/maximum.png');
+}
+
+.derived-measure-average-dragging,
+.tree .derived-measure-average > .head > .toggle {
+  background-image: url('../images/average.png');
+}
+
+.derived-measure-median-dragging,
+.tree .derived-measure-median > .head > .toggle {
+  background-image: url('../images/median.png');
+}
+
+.derived-measure-rank-dragging,
+.tree .derived-measure-rank > .head > .toggle {
+  background-image: url('../images/rank.png');
+}
+
+.derived-measure-sample-standard-deviation-dragging,
+.tree .derived-measure-sample-standard-deviation > .head > .toggle {
+  background-image: url('../images/sample-standard-deviation.png');
+}
+
+.derived-measure-population-standard-deviation-dragging,
+.tree .derived-measure-population-standard-deviation > .head > .toggle {
+  background-image: url('../images/population-standard-deviation.png');
+}
+
+/* end of derived measures */
+
+.level-dragging,
+.tree .level > .head > .toggle {
+  background-image: url('../images/level.png');
+}
+
+.levelunicity1-dragging,
+.levelunicity2-dragging,
+.levelunicity3-dragging,
+.tree .levelunicity1 > .head > .toggle,
+.tree .levelunicity2 > .head > .toggle,
+.tree .levelunicity3 > .head > .toggle {
+  background-image: url('../images/unique-level.png');
+}
+
+.property-dragging,
+.tree .property > .head > .toggle {
+  background-image: url('../images/property1.png');
+}
+
+.members-dragging,
+.tree .dimensions-collapsed > .head > .toggle,
+.tree .derived-measures-folder-collapsed > .head > .toggle,
+.tree .members-collapsed > .head > .toggle {
+  background-image: url('../images/folder-closed.png');
+}
+
+.tree .dimensions-expanded > .head > .toggle,
+.tree .derived-measures-folder-expanded > .head > .toggle,
+.tree .members-expanded > .head > .toggle {
+  background-image: url('../images/folder-open.png');
+}
+
+.tree .cardinality-estimate > .head > .label > span.cardinality:before {
+  content: "~";
+}
+
+.member-dragging,
+.tree .member > .head > .toggle {
+  background-image: url('../images/member1.png');
+}
+
+/* MDLEVEL_TYPE_TIME_YEARS 0x0014*/
+.leveltype20-dragging,
+.tree .leveltype20 > .head > .toggle {
+  background-image: url('../images/year-level1.png');
+}
+
+/* MDLEVEL_TYPE_TIME_HALF_YEAR 0x0024*/
+.leveltype36-dragging,
+.tree .leveltype36 > .head > .toggle {
+  background-image: url('../../lib/mui/images/calendar_16x16.png');
+}
+
+/* MDLEVEL_TYPE_TIME_QUARTERS 0x0044*/
+.leveltype68-dragging,
+.tree .leveltype68 > .head > .toggle {
+  background-image: url('../images/quarter-level1.png');
+}
+
+/* MDLEVEL_TYPE_TIME_MONTHS 0x0084*/
+.leveltype132-dragging,
+.tree .leveltype132 > .head > .toggle {
+  background-image: url('../images/month-level1.png');
+}
+
+/* MDLEVEL_TYPE_TIME_WEEKS 0x0104*/
+.leveltype260-dragging,
+.tree .leveltype260 > .head > .toggle {
+  background-image: url('../images/week-level1.png');
+}
+
+/* MDLEVEL_TYPE_TIME_DAYS 0x0204*/
+.leveltype516-dragging,
+.tree .leveltype516 > .head > .toggle {
+  background-image: url('../images/day-level1.png');
+}
+
+div.show-catalog-nodes {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #cbdde8;
+  padding: 2px;
+  white-space: nowrap;
+}
+
+div.show-catalog-nodes.hidden {
+  display: none;
+}
+
+div.node > div.head > span.label > span.label-prefix {
+  display: none;
+}
+
+.dragging span.label-prefix:after,
+div.node > div.head > span.label > span.label-prefix:after {
+  content: ": "
+}
+
+/*
+* Show label prefixes, but only if the parent node is flattened AND the parent node has multiple children
+* The idea is that only in this case, the extra label is required to disambiguate.
+* Currently this applies to catalog nodes (cube children) and dimension nodes (hierarchy children)
+*/
+div.flattened.multiple > div.body > div.node > div.head > span.label > span.label-prefix {
+  display: inline;
+}
+
+div.node.hierarchy.flattened > div.body > div.node.level > div.head > span.label > span.label-prefix {
+  display: inline;
+}
+
+/* mandatory nodes */
+div.mandatory > div.head > span.label {
+  font-weight: bold;
+}
+
+/* hierarchies of mandatory dimensions get to be bold. */
+div.mandatory > div.body > div.hierarchy > div.head > span.label {
+  font-weight: bold;
+}
+
+
+/* Provide a little extra space in case we have a splitter between dimensions and measures*/
+.cube-contents > .splitpane > .node  {
+  /*margin: 3px 0px;*/
+}

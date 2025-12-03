@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<Schema name="PRODUCTIVITY_KYLIN">
+
+  <Cube name="Productivity" defaultMeasure="Sum Amount">
+
+    <!-- FACT TABLE -->
+    <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+
+    <!-- ===================== DIMENSIONS ===================== -->
+
+    <!-- TIME DIMENSION (CALC_DATE) -->
+    <Dimension name="Calc Date" foreignKey="CALC_DATE">
+      <Hierarchy hasAll="true" primaryKey="CALC_DATE">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Calc Date" column="CALC_DATE" type="String" uniqueMembers="false"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- WAREHOUSE DIMENSION -->
+    <Dimension name="Warehouse" foreignKey="WH_ID">
+      <Hierarchy hasAll="true" primaryKey="WH_ID">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Warehouse ID" column="WH_ID" type="Numeric" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- OFFICE DIMENSION -->
+    <Dimension name="Office" foreignKey="OFFICE_ID">
+      <Hierarchy hasAll="true" primaryKey="OFFICE_ID">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Office ID" column="OFFICE_ID" type="Numeric" uniqueMembers="true"/>
+        <Level name="Office Country" column="OFFICE_COUNTRY_CODE" type="String" uniqueMembers="false"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- EMPLOYEE DIMENSION -->
+    <Dimension name="Employee" foreignKey="EMPLOYEE_ID">
+      <Hierarchy hasAll="true" primaryKey="EMPLOYEE_ID">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Employee ID" column="EMPLOYEE_ID" type="Numeric" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- PRODUCT TYPE -->
+    <Dimension name="Product Type" foreignKey="PRODTYPE_ID">
+      <Hierarchy hasAll="true" primaryKey="PRODTYPE_ID">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Product Type ID" column="PRODTYPE_ID" type="Numeric" uniqueMembers="true"/>
+        <Level name="Product Type Code" column="PRODTYPE_CODE" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- ENTRY DIMENSION -->
+    <Dimension name="Entry" foreignKey="ENTRY">
+      <Hierarchy hasAll="true" primaryKey="ENTRY">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Entry" column="ENTRY" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- WORLD ENTRY DIMENSION -->
+    <Dimension name="World Entry" foreignKey="WORLD_ENTRY">
+      <Hierarchy hasAll="true" primaryKey="WORLD_ENTRY">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="World Entry" column="WORLD_ENTRY" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- IS CREDIT -->
+    <Dimension name="Is Credit" foreignKey="IS_CREDIT">
+      <Hierarchy hasAll="true" primaryKey="IS_CREDIT">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Is Credit" column="IS_CREDIT" type="Boolean"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- CURRENCY -->
+    <Dimension name="Currency" foreignKey="CURRENCY_ID">
+      <Hierarchy hasAll="true" primaryKey="CURRENCY_ID">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Currency ID" column="CURRENCY_ID" type="Numeric"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- PAY PART -->
+    <Dimension name="Pay Part" foreignKey="PAY_PART">
+      <Hierarchy hasAll="true" primaryKey="PAY_PART">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Pay Part" column="PAY_PART" type="Numeric"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- RATE DATE -->
+    <Dimension name="Rate Date" foreignKey="RATE_DT">
+      <Hierarchy hasAll="true" primaryKey="RATE_DT">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Rate Date" column="RATE_DT" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- CREATE DATE -->
+    <Dimension name="Create Date" foreignKey="CREATE_DT">
+      <Hierarchy hasAll="true" primaryKey="CREATE_DT">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Create Date" column="CREATE_DT" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- OPERATION DATE -->
+    <Dimension name="Operation Date" foreignKey="OPER_DT">
+      <Hierarchy hasAll="true" primaryKey="OPER_DT">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="Operation Date" column="OPER_DT" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- WORLD REPORTED DATE -->
+    <Dimension name="World Reported Date" foreignKey="WORLD_REPORTED_DT">
+      <Hierarchy hasAll="true" primaryKey="WORLD_REPORTED_DT">
+        <Table name="PRODUCTIVITY" schema="PRODUCTIVITY_DB"/>
+        <Level name="World Reported Date" column="WORLD_REPORTED_DT" type="String"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- ========== MEASURES ========== -->
+
+    <Measure name="Sum Amount"
+             column="AMOUNT"
+             aggregator="sum" formatString="#,###.00"/>
+
+    <Measure name="Cnt WhId"
+             column="WH_ID"
+             aggregator="count" formatString="#,###.0000"/>
+
+  </Cube>
+
+</Schema>
