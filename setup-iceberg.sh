@@ -8,8 +8,11 @@ echo "=========================================="
 
 # 1. Создаём bucket в MinIO
 echo "[1/6] Создаём bucket в MinIO..."
-docker exec minio mc alias set local http://localhost:9000 admin password123 2>/dev/null || true
-docker exec minio mc mb local/warehouse --ignore-existing 2>/dev/null || true
+docker cp data/ minio:/data/
+docker exec minio mc alias set local http://localhost:9000 admin password123
+docker exec minio mc mb local/warehouse --ignore-existing
+docker exec minio mc cp --recursive /data/data/ local/warehouse/productivity_avro/
+docker exec minio mc ls local/warehouse/productivity_avro/
 echo "      Bucket создан"
 
 # 2. Настраиваем core-site.xml с S3 credentials
