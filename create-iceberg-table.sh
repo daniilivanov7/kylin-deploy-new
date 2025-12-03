@@ -48,11 +48,3 @@ docker exec kylin5 bash -c '
 /home/kylin/apache-kylin-5.0.2-bin/bin/kylin.sh restart
 '
 
-echo ""
-echo "=========================================="
-echo "✅ Таблица создана и Kylin перезапущен!"
-echo "=========================================="
-echo ""
-echo "В Kylin UI:"
-echo "1. Data Asset → Data Source → Refresh"
-echo "2. Разверни PRODUCTIVITY_DB → выбери PRODUCTIVITY → Load"
