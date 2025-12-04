@@ -6,7 +6,6 @@ echo "=========================================="
 echo "Настройка Iceberg для Kylin 5"
 echo "=========================================="
 
-# 1. Создаём bucket в MinIO
 echo "[1/6] Создаём bucket в MinIO..."
 docker cp data/ minio:/data/
 docker exec minio mc alias set local http://localhost:9000 admin password123
@@ -15,7 +14,6 @@ docker exec minio mc cp --recursive /data/data/ local/warehouse/productivity_avr
 docker exec minio mc ls local/warehouse/productivity_avro/
 echo "      Bucket создан"
 
-# 2. Настраиваем core-site.xml с S3 credentials
 echo "[2/6] Настраиваем core-site.xml..."
 docker exec kylin5 bash -c '
 cat > /opt/hadoop-3.2.4/etc/hadoop/core-site.xml << "EOF"
@@ -63,7 +61,6 @@ EOF
 '
 echo "      core-site.xml настроен"
 
-# 3. Скачиваем Iceberg Runtime
 echo "[3/6] Скачиваем Iceberg Runtime 1.7.1..."
 docker exec kylin5 bash -c '
   if [ ! -f /opt/apache-hive-3.1.3-bin/lib/iceberg-hive-runtime-1.7.1.jar ]; then
@@ -75,7 +72,6 @@ docker exec kylin5 bash -c '
   fi
 '
 
-# 4. Копируем JAR-файлы
 echo "[4/6] Копируем JAR-файлы..."
 docker exec kylin5 bash -c '
   cp -n /opt/apache-hive-3.1.3-bin/lib/iceberg-hive-runtime-1.7.1.jar \
@@ -98,7 +94,6 @@ docker exec kylin5 bash -c '
 '
 echo "      JAR-файлы скопированы"
 
-# 5. Добавляем конфигурацию Iceberg в kylin.properties
 echo "[5/6] Настраиваем kylin.properties..."
 docker exec kylin5 bash -c '
   if ! grep -q "ICEBERG + S3 CONFIGURATION" /home/kylin/apache-kylin-5.0.2-bin/conf/kylin.properties; then
@@ -128,7 +123,6 @@ EOF
   fi
 '
 
-# 6. Перезапускаем Hive Metastore
 echo "[6/6] Перезапускаем Hive Metastore..."
 docker exec kylin5 bash -c 'pkill -f HiveMetaStore 2>/dev/null || true'
 sleep 2
