@@ -1,10 +1,5 @@
 #!/bin/bash
 
-echo "=========================================="
-echo "Создание таблицы PRODUCTIVITY из Avro"
-echo "=========================================="
-
-# 1. Проверяем Hive Metastore
 echo "[1/2] Проверяем Hive Metastore..."
 docker exec kylin5 bash -c '
   if ! ps aux | grep -v grep | grep -q HiveMetaStore; then
@@ -16,7 +11,6 @@ docker exec kylin5 bash -c '
   fi
 '
 
-# 2. Создаём таблицу (с подключением spark-avro)
 echo "[2/2] Создаём Iceberg таблицу из Avro файлов..."
 docker exec kylin5 bash -c '
 /home/kylin/apache-kylin-5.0.2-bin/spark/bin/spark-sql \
@@ -40,9 +34,7 @@ docker exec kylin5 bash -c '
   "
 '
 
-echo "=========================================="
-echo "🔄 Перезапускаем Kylin, чтобы подхватить новую базу..."
-echo "=========================================="
+echo "Перезапускаем Kylin, чтобы подхватить новую базу..."
 
 docker exec kylin5 bash -c '
 /home/kylin/apache-kylin-5.0.2-bin/bin/kylin.sh restart
