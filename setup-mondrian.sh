@@ -3,8 +3,8 @@
 set -e
 
 echo "[1/7] Создаём структуру директорий..."
-mkdir -p /mondrian-kylin
-cd /mondrian-kylin
+mkdir -p ./mondrian-kylin
+cd ./mondrian-kylin
 mkdir -p lib schema conf
 
 echo "[2/7] Скачиваем xmondrian.war..."
@@ -14,7 +14,7 @@ echo "[3/7] Распаковываем WAR..."
 mkdir -p xmondrian
 cd xmondrian
 jar -xf ../xmondrian.war
-cd /mondrian-kylin
+cd ..
 
 echo "[4/7] Скачиваем Kylin JDBC драйвер..."
 wget -q -O ./lib/kylin-jdbc.jar \
@@ -193,9 +193,9 @@ cat > ./xmondrian/WEB-INF/schema/schema.xml << 'EOF'
 EOF
 
 echo "[8/8] Пересобираем WAR файл..."
-cd /mondrian-kylin/xmondrian
+cd xmondrian
 jar -cvf ../xmondrian-kylin.war . > /dev/null
-cd /mondrian-kylin
+cd ..
 
 echo ""
 echo "=========================================="
